@@ -62,8 +62,10 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Useful command:
 ```
 php artisan serve
+php artisan make:migration create_posts_table
 php artisan migrate
 
 php artisan make:controller UserController
+php artisan make:model Post
 
 ```
