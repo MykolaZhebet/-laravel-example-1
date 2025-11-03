@@ -1,0 +1,27 @@
+services:
+#  app:
+#    container_name: app-laravel
+#    networks:
+#      - backend-network
+  db:
+    container_name: db-laravel
+    image: mysql:8.0
+    tty: true
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql/
+    ports:
+      - '${DB_PORT}:3306'
+    networks:
+      - backend-network
+
+volumes:
+  db_data:
+
+networks:
+  backend-network:
+    driver: bridge

@@ -1,0 +1,3 @@
+POST http://127.0.0.1:8000/register
+
+_token=w7f5xAw3sygmurgFAEMfrQwejPOVD7t1X9RzU0SC&name=test&email=test%40testdomain.com&password=test&submit=Register
