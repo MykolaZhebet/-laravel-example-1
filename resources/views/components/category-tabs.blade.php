@@ -1,4 +1,5 @@
 <!-- Flowbit Tabs -->
+<p>{{$name}}</p>
 <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400 justify-center">
     <li class="me-2">
         <a href="#" class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg active" aria-current="page">
