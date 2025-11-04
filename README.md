@@ -61,6 +61,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Useful command:
 ```
+## Setup:
+php artisan sail:install
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+sail artisan migrate
+sail up
+# sail artisan sail:publish //Add docker files into docker folder
+
+## Local variant
 php artisan serve
 php artisan make:migration create_posts_table
 php artisan migrate
@@ -69,3 +77,10 @@ php artisan make:controller UserController
 php artisan make:model Post
 
 ```
+
+## Packages
+- monolog/monolog for logging
+- laravel breeze for authentication logic(Blade with Alpine.js )
+- Pest for testing
+
+### Inspired by @see https://www.youtube.com/watch?v=MG1kt_wiIz0 
