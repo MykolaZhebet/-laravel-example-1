@@ -6,7 +6,8 @@
             All
         </a>
     </li>
-@foreach($categories as $category)
+    
+@forelse($categories as $category)
     <li class="me-2">
         <a href="#" class="inline-block px-4 py-2 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white" aria-current="page">
             {{ $category->name }}
@@ -15,7 +16,9 @@
     {{-- <li class="me-2">
         <a href="#"  class="inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">Tab 2</a>
     </li> --}}
-@endforeach
+@empty
+    <p>{{$slot}}</p>
+@endforelse
 </ul>
 
 <!-- Flowbit Tabs -->
