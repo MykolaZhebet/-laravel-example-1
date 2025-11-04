@@ -21,8 +21,8 @@ class CategoryTabs extends Component
     {
         $categories = Category::get();
         return view('components.category-tabs', [
-            // 'categories' => $categories
-            'categories' => []
+            'categories' => $categories
+            // 'categories' => []
         ]);
     }
 }
