@@ -3,53 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function createPost(Request $request) {
-        $incomingFields = (array)$request->validate([
-            'title' => 'required',
-            'body' => 'required',
-        ]);
-
-        $incomingFields['title'] = strip_tags($incomingFields['title']);
-        $incomingFields['body'] = strip_tags($incomingFields['body']);
-        $incomingFields['user_id'] = auth()->id();
-        Post::create($incomingFields);
-        return redirect('/');
-    }
-
-    public function showEditPost(Post $post) {
-        if(auth()->user()->id !== $post['user_id']) {
-            return redirect('/');
-        }
-        return view('edit-post', ['post'=> $post]);
-    }
-    public function deletePost(Post $post, Request $request)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        if (auth()->user()->id !== $post['user_id']) {
-            return redirect('/');
-        }
-        $post->delete();
-        return redirect('/');
-
-    }
-
-    public function editPost(Post $post, Request $request) {
-        if(auth()->user()->id !== $post['user_id']) {
-            return redirect('/');
-        }
-        $incomingFields = (array)$request->validate([
-            'title' => 'required',
-            'body' => 'required',
+        $categories = Category::get();
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(5);
+        return view('dashboard', [
+            'categories' => $categories,
+            'posts' => $posts
         ]);
-        $incomingFields['title'] = strip_tags($incomingFields['title']);
-        $incomingFields['body'] = strip_tags($incomingFields['body']);
-
-        $post->update($incomingFields);
-        return redirect('/');
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
 
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Post $post)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Post $post)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Post $post)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Post $post)
+    {
+        //
+    }
 }

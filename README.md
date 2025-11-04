@@ -68,6 +68,10 @@ sail artisan migrate
 sail up
 # sail artisan sail:publish //Add docker files into docker folder
 
+sail artisan make:controller PostController --resource --model=Post
+
+
+
 ## Local variant
 php artisan serve
 php artisan make:migration create_posts_table
@@ -86,5 +90,7 @@ sail artisan db:seed
 - monolog/monolog for logging
 - laravel breeze for authentication logic(Blade with Alpine.js )
 - Pest for testing
+### Frontent
+- flowbite components: https://flowbite.com/docs/components/tabs/
 
 ### Inspired by @see https://www.youtube.com/watch?v=MG1kt_wiIz0 
