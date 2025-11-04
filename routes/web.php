@@ -20,15 +20,15 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/', function () {
-    //        return view('welcome');
-    //        $posts = Post::where('user_id', auth()->id())->get();
-    $posts = [];
-    if (auth()->check()) {
-        $posts = auth()->user()->posts()->latest()->get();
-    }
-    return view('home', ['posts' => $posts]);
-});
+// Route::get('/', function () {
+//     //        return view('welcome');
+//     //        $posts = Post::where('user_id', auth()->id())->get();
+//     $posts = [];
+//     if (auth()->check()) {
+//         $posts = auth()->user()->posts()->latest()->get();
+//     }
+//     return view('home', ['posts' => $posts]);
+// });
 
 // Route::post('/register', [UserController::class, 'register']);
 // Route::post('/logout', [UserController::class, 'logout']);
