@@ -1,8 +1,22 @@
 services:
-#  app:
-#    container_name: app-laravel
-#    networks:
-#      - backend-network
+#   web:
+#     image: nginx:latest
+#     volumes:
+#       - ./:/var/www/html
+#       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+#     ports:
+#       - "80:80"
+# #    environment:
+# #      - NGINX_HOST=localhost
+#     networks:
+#       - backend-network
+#     depends_on:
+#       app:
+#           condition: service_started
+#   app:
+#     container_name: app-laravel
+#     networks:
+#       - backend-network
   db:
     container_name: db-laravel
     image: mysql:8.0
