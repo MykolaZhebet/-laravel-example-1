@@ -71,6 +71,7 @@ sail up
 sail artisan make:controller PostController --resource --model=Post
 sail artisan vendor:publish --tag=laravel-pagination //Access to pagination template
 sail artisan make:component PostItem //Generate class based view component
+sail artisan storage:link //Create symblink to the public folder from the storage folder
 
 
 ## Local variant
