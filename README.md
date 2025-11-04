@@ -69,6 +69,7 @@ sail up
 # sail artisan sail:publish //Add docker files into docker folder
 
 sail artisan make:controller PostController --resource --model=Post
+sail artisan vendor:publish --tag=laravel-pagination //Access to pagination template
 
 
 

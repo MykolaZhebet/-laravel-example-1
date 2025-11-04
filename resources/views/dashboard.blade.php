@@ -71,7 +71,7 @@
                         @endforeach
 
                     <!-- Flowbit Tabs -->
-                    {{ $posts->onEachSide(1)->links() }}
+                    {{ $posts->onEachSide(1)->links('vendor.pagination.tailwind') }}
                 {{-- </div> --}}
             </div>
         </div>
