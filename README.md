@@ -75,7 +75,11 @@ php artisan migrate
 
 php artisan make:controller UserController
 php artisan make:model Post
+php artisan db:show
+php artisan db:table
 
+## Test
+sail artisan db:seed
 ```
 
 ## Packages
