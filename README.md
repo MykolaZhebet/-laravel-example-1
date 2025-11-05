@@ -95,5 +95,6 @@ sail artisan db:seed
 - Pest for testing
 ### Frontent
 - flowbite components: https://flowbite.com/docs/components/tabs/
+- https://heroicons.com/ for SVG icons
 
 ### Inspired by @see https://www.youtube.com/watch?v=MG1kt_wiIz0 
