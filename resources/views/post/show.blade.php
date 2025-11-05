@@ -10,15 +10,12 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-8">
                 <h1 class="text-5xl mb-4">{{ $post->title }}</h1>
                 <div class="flex gap-4">
-                    @if($post->author->image)
-                        <img src="{{$post->author->imageUrl()}}" alt="" />
-                    @else
-                        <img src="{{ $post->author->image}}" alt="" />
-                    @endif
+                    <x-user-avatar :user="$post->author" />
                 </div>
                 <div>
                     <div class="flex gap-2">
-                        <h3>{{ $post->author->name }}</h3>
+                        <a href="{{ route('profile.show', $post->author) }}"
+                            class="hove:underline">{{ $post->author->name }}</a>
                         &middot;
                         <a href="#" class="text-emerald-500">Follow</a>
                     </div>
