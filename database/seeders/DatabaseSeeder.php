@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Test User',
+            'user_name' => 'test_user',
             'email' => 'test@example.com',
         ]);
 
@@ -39,7 +40,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        Post::factory(100)->create();
+        // Post::factory(100)->create();
         // $this->call([
         //     PostSeeder::class
         // ]);
