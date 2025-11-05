@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // Post::factory(100)->create();
+        Post::factory(100)->create();
         // $this->call([
         //     PostSeeder::class
         // ]);
