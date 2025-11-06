@@ -73,7 +73,7 @@ sail artisan vendor:publish --tag=laravel-pagination //Access to pagination temp
 sail artisan make:component PostItem //Generate class based view component
 sail artisan storage:link //Create symblink to the public folder from the storage folder
 sail artisan make:request PostCreateReques 
-
+sail artisan queue:work //Listen for queues
 
 ## Local variant
 php artisan serve
@@ -93,6 +93,7 @@ sail artisan db:seed
 - monolog/monolog for logging
 - laravel breeze for authentication logic(Blade with Alpine.js )
 - Pest for testing
+- spatie/laravel-medialibrary for working with media files
 ### Frontent
 - flowbite components: https://flowbite.com/docs/components/tabs/
 - https://heroicons.com/ for SVG icons

@@ -55,10 +55,12 @@
             @endif
         </div>
         <div>
-            @if($user->image)
+            @if($user->getFirstMedia('avatar'))
                 <div>
-                    <img src="{{ Storage::url($user->image) }}" class="rounded-full h-20 w-20" />
+                    <img src="{{ $user->getFirstMedia('avatar')?->getUrl('avatar') }}" class="rounded-full h-20 w-20" />
                 </div>
+            @else
+                <p> No avatar</p>
             @endif
             <x-input-label for="image" :value="__('Avatar')" />
             <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')"
