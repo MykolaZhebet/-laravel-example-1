@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -20,6 +21,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('post.show');
     Route::post('/post/create', [PostController::class, 'store'])
         ->name('post.store');
+
+    Route::post('/follow/{user}', [FollowerController::class, 'followUnfollow'])->name('follow');
 });
 
 //Route model binding

@@ -13,12 +13,14 @@
                     <x-user-avatar :user="$post->author" />
                 </div>
                 <div>
-                    <div class="flex gap-2">
+
+                    <x-follow-container :user="$post->author" class="flex gap-2">
                         <a href="{{ route('profile.show', $post->author) }}"
                             class="hove:underline">{{ $post->author->name }}</a>
                         &middot;
-                        <a href="#" class="text-emerald-500">Follow</a>
-                    </div>
+                        <button class="text-emerald-500" x-text="following ? 'Unfollow': 'Follow'"
+                            :class="following ? 'text-red-600': 'text-emerald-600'" @click="follow()"></button>
+                    </x-follow-container>
 
                     <div class="flex gap-2 text-gray-500 text-sm">
                         {{ $post->readTime()  }} min read
