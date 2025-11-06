@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Post extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, InteractsWithMedia, HasSlug;
     protected $fillable = [
         'title',
         'content',
@@ -59,6 +61,28 @@ class Post extends Model implements HasMedia
     public function imageUrl(string $conversionName = 'preview'): ?string
     {
         // return Storage::url($this->image);
-        return $this->getFirstMedia()?->getUrl($conversionName);
+        $media = $this->getFirstMedia();
+        if (!$media) {
+            return null;
+        }
+
+        if ($media->hasGeneratedConversion($conversionName)) {
+            return $media->getUrl($conversionName);
+        }
+
+        return $media->getUrl();
+    }
+    public function getSlugOPtions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
+
+    //We shouldn't have different versions of file
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('default')
+            ->singleFile();
     }
 }

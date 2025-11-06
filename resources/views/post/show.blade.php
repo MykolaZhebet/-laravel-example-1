@@ -28,7 +28,19 @@
                         {{ $post->created_at->format('M d, Y')}}
                     </div>
                 </div>
-
+                @if($post->user_id === Auth::id())
+                    <div class="py-4 mt-8 border-t border-b border-gray-200">
+                        <form action="{{ route('post.edit', $post) }}" method="POST">
+                            @csrf
+                            <x-primary-button href="{{ route('post.edit', $post->slug) }}">Edit post</x-primary-button>
+                        </form>
+                        <form action="{{ route('post.destroy', $post) }}" method="POST" class="inline-block">
+                            @csrf
+                            @method('delete')
+                            <x-danger-button>Delete post</x-danger-button>
+                        </form>
+                    </div>
+                @endif
                 <x-clap-button :post="$post" />
                 <div>
                     <img src="{{ $post->imageUrl('large') }}" alt="{{ $post->title }}" class="w-full" />

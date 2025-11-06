@@ -21,8 +21,14 @@
 
         </a>
 
-        <a href="#" class="text-gray-500 text-sm flex gap-4">
-            Created At: {{ $post->created_at->format('M d, Y') }}
+        <a href="{{ route('profile.show', $post->user->user_name) }}"
+            class="text-gray-500 text-sm flex gap-4 hover:underline">
+            Published by:
+            <img src="{{ $post->author->imageUrl() }}" alt="{{ $post->author->name }}" />
+            <div class="text-gray-500 items-center gap-1">
+                {{ $post->author->user_name }} at: {{ $post->created_at->format('M d, Y') }}
+            </div>
+
             <span class="inline-flex gap-1 items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                     <path

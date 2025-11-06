@@ -65,6 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         // ->nonQueued();
     }
 
+    //We shouldn't have different versions of file
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('avatar')
@@ -78,7 +79,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public function imageUrl()
     {
-        return $this->getFirmsMedia('avatar')?->getUrl('avatar');
+        $media = $this->getFirstMedia('avatar');
+        if ($media->hasGeneratedConversion('avatar')) {
+            return $media->getUrl('avatar');
+        }
+        return $media->getUrl();
         // return Storage::url($this->image);
     }
 

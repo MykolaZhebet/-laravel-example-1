@@ -94,6 +94,7 @@ sail artisan db:seed
 - laravel breeze for authentication logic(Blade with Alpine.js )
 - Pest for testing
 - spatie/laravel-medialibrary for working with media files
+- spatie/laravel-sluggable for generating slugs for models
 ### Frontent
 - flowbite components: https://flowbite.com/docs/components/tabs/
 - https://heroicons.com/ for SVG icons

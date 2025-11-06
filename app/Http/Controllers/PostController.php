@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostCreateRequest;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PostCreateRequest;
+use App\Http\Requests\PostUpdateRequest;
 
 class PostController extends Controller
 {
@@ -20,7 +22,7 @@ class PostController extends Controller
         // });
 
         $user = auth()->user();
-        $query = Post::with(['user', 'media'])
+        $query = Post::with(['author', 'media'])
             ->withCount('claps')
             ->latest();
 
@@ -55,7 +57,8 @@ class PostController extends Controller
         // $image = $data['image'];
         unset($data['image']);
         $data['user_id'] = auth()->user()->id;
-        $data['slug'] = Str::slug($data['title']);
+        //Use sluggable trait which automatically generate slug
+        // $data['slug'] = Str::slug($data['title']);
 
         // $imagePath = $image->store('posts', 'public');
         // $data['image'] = $imagePath;
@@ -79,15 +82,31 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        if ($post->user_id !==  Auth::id()) {
+            abort(403);
+        }
+        return View('post.edit', ['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PostUpdateRequest $request, Post $post)
     {
-        //
+
+        if ($post->user_id !==  Auth::id()) {
+            abort(403);
+        }
+        $data = $request->validated();
+        //Use sluggable trait which automatically generate slug
+        // $data['slug'] = Str::slug($data['title']);
+        $post->update($data);
+        if ($data['image'] ?? false) {
+            $post->addMediaFromRequest('image')
+                ->toMediaCollection();
+        }
+
+        return redirect()->route('myPostsspa');
     }
 
     /**
@@ -95,19 +114,39 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        if ($post->user_id !==  Auth::id()) {
+            abort(403);
+        }
+        $post->delete();
+        return redirect()->route('dashboard');
     }
 
     public function category(Category $category)
     {
         $posts = $category->posts()
-            ->with(['user', 'media'])
+            ->with(['author', 'media'])
             ->withCount('claps')
             ->latest()
             ->paginate(5);
 
         return view('post.index', [
             'posts' => $posts
+        ]);
+    }
+
+    public function myPosts()
+    {
+        $user = auth()->user();
+        $posts = $user->posts()
+            ->with(['author', 'media'])
+            ->withCount('claps')
+            ->latest()
+            ->paginate(5);
+        $categories = Category::get();
+
+        return view('post.index', [
+            'posts' => $posts,
+            'categories' => $categories
         ]);
     }
 }
