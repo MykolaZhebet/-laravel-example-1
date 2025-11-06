@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\FollowerController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClapController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PublicProfileController;
 
 Route::get('/', function () {
@@ -23,6 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('post.store');
 
     Route::post('/follow/{user}', [FollowerController::class, 'followUnfollow'])->name('follow');
+    Route::post('/clap/{post}', [ClapController::class, 'clap'])->name('clap');
 });
 
 //Route model binding

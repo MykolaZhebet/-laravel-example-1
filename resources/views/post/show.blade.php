@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                <x-clap-button />
+                <x-clap-button :post="$post" />
                 <div>
                     <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="w-full" />
                     <div class="mt-4">
