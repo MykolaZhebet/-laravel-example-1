@@ -1,1 +1,4 @@
-This is from about view blade view
+<x-ui-project-layout>
+    <x-slot:heading>About page</x-slot:heading>
+    This is content of the about page
+</x-ui-project-layout>

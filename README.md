@@ -97,6 +97,7 @@ sail artisan db:seed
 - spatie/laravel-sluggable for generating slugs for models
 ### Frontent
 - flowbite components: https://flowbite.com/docs/components/tabs/
+- tailwincss.com for layout template:  https://tailwindcss.com/plus/ui-blocks/application-ui/application-shells/stacked 
 - https://heroicons.com/ for SVG icons
 
 ### Inspired by @see https://www.youtube.com/watch?v=MG1kt_wiIz0 
