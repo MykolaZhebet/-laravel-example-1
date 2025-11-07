@@ -20,7 +20,7 @@ Route::get('/welcome', function () {
 
 
 Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->get();
+    $jobs = Job::with('employer')->paginate(2);
     return view('jobs', [
         'jobs' => $jobs
     ]);

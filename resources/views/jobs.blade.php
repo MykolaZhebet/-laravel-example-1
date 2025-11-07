@@ -9,4 +9,5 @@
             </a>
         </div>
     @endforeach
+    {{ $jobs->links() }}
 </x-ui-project-layout>
