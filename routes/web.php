@@ -11,6 +11,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 Route::get('/', [PostController::class, 'index'])
     ->name('dashboard');
 Route::get('/post/@{user_name}/{post:slug}', [PostController::class, 'show'])

@@ -1,0 +1,1 @@
+This is from about view blade view
