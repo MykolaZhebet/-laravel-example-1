@@ -65,6 +65,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 php artisan sail:install
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 sail artisan migrate
+sail artisan migrate:fresh --seed //Run migration from the beginning and run seeds
 sail up
 # sail artisan sail:publish //Add docker files into docker folder
 
@@ -86,7 +87,10 @@ php artisan db:show
 php artisan db:table
 
 ## Test
-sail artisan db:seed
+sail artisan db:seed //Run DatabaseSeeder
+sail artisan db:seed --class=JobSeeder //Run concrete seeder
+
+
 ```
 
 ## Packages

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Job;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -39,7 +40,7 @@ class DatabaseSeeder extends Seeder
                 // 'slug' => Str::slug($category),
             ]);
         }
-
+        $this->call(JobSeeder::class);
         Post::factory(100)->create();
         // $this->call([
         //     PostSeeder::class

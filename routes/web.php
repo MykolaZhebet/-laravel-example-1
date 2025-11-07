@@ -20,11 +20,15 @@ Route::get('/welcome', function () {
 
 
 Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->paginate(2);
+    // $jobs = Job::with('employer')->paginate(2);
+    // $jobs = Job::with('employer')->simplePaginate(2);
+    $jobs = Job::with('employer')->cursorPaginate(2);
     return view('jobs', [
         'jobs' => $jobs
     ]);
 });
+
+
 
 Route::get('/jobs/{id}', function ($id) {
     // dd();
