@@ -35,12 +35,13 @@
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                                <a href="/" aria-current="page"
-                                    class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Home</a>
-                                <a href="/about"
-                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">About</a>
-                                <a href="/contact"
-                                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact</a>
+                                <x-simple-nav-link href="/" :active="request()->is('/')">Home</x-simple-nav-link>
+                                <x-simple-nav-link href="/about"
+                                    :active="request()->is('about')">About</x-simple-nav-link>
+                                <x-simple-nav-link href="/contact"
+                                    :active="request()->is('contact')" type="button">Contact</x-simple-nav-link>
+                                <x-simple-nav-link href="/jobs"
+                                    :active="request()->is('contact')">Jobs</x-simple-nav-link>
                             </div>
                         </div>
                     </div>

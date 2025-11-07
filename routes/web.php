@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClapController;
 use App\Http\Controllers\PostController;
@@ -7,8 +8,35 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PublicProfileController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/welcome', function () {
+    return view('welcome', [
+        'greeting' => 'Hi there!'
+    ]);
+});
+
+$jobs = [
+    [
+        'id' => 1,
+        'title' => 'job title 1',
+        'salary' => '$50, 000',
+    ],
+    [
+        'id' => 2,
+        'title' => 'job title 2',
+        'salary' => '$10, 000',
+    ]
+];
+
+Route::get('/jobs', function () use ($jobs) {
+    return view('jobs', [
+        'jobs' => $jobs
+    ]);
+});
+
+Route::get('/jobs/{id}', function ($id) use ($jobs) {
+    $job = Arr::first($jobs, fn($job) => $job['id'] == $id);
+    // dd();
+    return view('job', ['job' => $job]);
 });
 
 Route::get('/about', function () {
