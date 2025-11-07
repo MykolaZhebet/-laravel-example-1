@@ -100,4 +100,6 @@ sail artisan db:seed
 - tailwincss.com for layout template:  https://tailwindcss.com/plus/ui-blocks/application-ui/application-shells/stacked 
 - https://heroicons.com/ for SVG icons
 
-### Inspired by @see https://www.youtube.com/watch?v=MG1kt_wiIz0 
+### Inspired by @see 
+- https://www.youtube.com/watch?v=MG1kt_wiIz0 
+- https://www.youtube.com/watch?v=9O_WD5zQGxM&list=PL3VM-unCzF8hy47mt9-chowaHNjfkuEVz&index=10

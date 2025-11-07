@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Job;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClapController;
@@ -14,28 +15,19 @@ Route::get('/welcome', function () {
     ]);
 });
 
-$jobs = [
-    [
-        'id' => 1,
-        'title' => 'job title 1',
-        'salary' => '$50, 000',
-    ],
-    [
-        'id' => 2,
-        'title' => 'job title 2',
-        'salary' => '$10, 000',
-    ]
-];
 
-Route::get('/jobs', function () use ($jobs) {
+
+
+
+Route::get('/jobs', function () {
     return view('jobs', [
-        'jobs' => $jobs
+        'jobs' => Job::all()
     ]);
 });
 
-Route::get('/jobs/{id}', function ($id) use ($jobs) {
-    $job = Arr::first($jobs, fn($job) => $job['id'] == $id);
+Route::get('/jobs/{id}', function ($id) {
     // dd();
+    $job = Job::find($id);
     return view('job', ['job' => $job]);
 });
 
