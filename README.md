@@ -104,13 +104,3 @@ sail artisan db:seed
 ### Inspired by @see 
 - https://www.youtube.com/watch?v=MG1kt_wiIz0 
 - https://www.youtube.com/watch?v=9O_WD5zQGxM&list=PL3VM-unCzF8hy47mt9-chowaHNjfkuEVz&index=10
-
-
-- AppProviders
-- console
-- events
-- email
-- queue
-- caching
-- api
-- integration with emails
