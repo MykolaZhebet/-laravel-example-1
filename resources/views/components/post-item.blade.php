@@ -21,7 +21,7 @@
 
         </a>
 
-        <a href="{{ route('profile.show', $post->user->user_name) }}"
+        <a href="{{ route('profile.show', $post->author->user_name) }}"
             class="text-gray-500 text-sm flex gap-4 hover:underline">
             Published by:
             <img src="{{ $post->author->imageUrl() }}" alt="{{ $post->author->name }}" />

@@ -23,6 +23,7 @@ class PostController extends Controller
 
         $user = auth()->user();
         $query = Post::with(['author', 'media'])
+            ->where('published_at', '<=', now())
             ->withCount('claps')
             ->latest();
 
@@ -55,7 +56,7 @@ class PostController extends Controller
     {
         $data = $request->validated();
         // $image = $data['image'];
-        unset($data['image']);
+        // unset($data['image']);
         $data['user_id'] = auth()->user()->id;
         //Use sluggable trait which automatically generate slug
         // $data['slug'] = Str::slug($data['title']);
@@ -64,8 +65,11 @@ class PostController extends Controller
         // $data['image'] = $imagePath;
 
         $post = Post::create($data);
-        $post->addMediaFromRequest('image')
-            ->toMediaCollection();
+        if ($request->hasFile('image')) {
+            $post->addMediaFromRequest('image')
+                ->toMediaCollection();
+        }
+
         return redirect()->route('dashboard');
     }
 
@@ -83,9 +87,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         if ($post->user_id !==  Auth::id()) {
+
             abort(403);
         }
-        return View('post.edit', ['post' => $post]);
+        $categories = Category::get();
+        return View('post.edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**
@@ -106,7 +112,7 @@ class PostController extends Controller
                 ->toMediaCollection();
         }
 
-        return redirect()->route('myPostsspa');
+        return redirect()->route('myPosts');
     }
 
     /**
@@ -125,6 +131,7 @@ class PostController extends Controller
     {
         $posts = $category->posts()
             ->with(['author', 'media'])
+            ->where('published_at', '<=', now())
             ->withCount('claps')
             ->latest()
             ->paginate(5);

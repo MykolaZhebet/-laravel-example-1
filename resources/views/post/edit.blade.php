@@ -21,7 +21,7 @@
             @endif
                 <div>
                     <x-input-label for="image" :value="__('Image')" />
-                    <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')"
+                    <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image', $post->image)"
                         required autofocus />
                     <x-input-error :messages="$errors->get('image')" class="mt-2" />
                 </div>
@@ -45,6 +45,12 @@
                     <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title', $post->title)"
                         required autofocus />
                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                </div>
+                <div class="mt-4">
+                    <x-input-label for="published_at" :value="__('published at')" />
+                    <x-text-input id="published_at" class="block mt-1 w-full" type="datetime-local" name="published_at"
+                        :value="old('published_at', $post->published_at)" required autofocus />
+                    <x-input-error :messages="$errors->get('published_at')" class="mt-2" />
                 </div>
                 <div class="mt-4">
                     <x-input-label for="content" :value="__('Content')" />
