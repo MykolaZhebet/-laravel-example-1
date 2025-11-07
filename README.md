@@ -95,6 +95,7 @@ sail artisan db:seed
 - Pest for testing
 - spatie/laravel-medialibrary for working with media files
 - spatie/laravel-sluggable for generating slugs for models
+- barryvdh/laravel-debugbar --dev for local debugging
 ### Frontent
 - flowbite components: https://flowbite.com/docs/components/tabs/
 - tailwincss.com for layout template:  https://tailwindcss.com/plus/ui-blocks/application-ui/application-shells/stacked 
@@ -103,3 +104,13 @@ sail artisan db:seed
 ### Inspired by @see 
 - https://www.youtube.com/watch?v=MG1kt_wiIz0 
 - https://www.youtube.com/watch?v=9O_WD5zQGxM&list=PL3VM-unCzF8hy47mt9-chowaHNjfkuEVz&index=10
+
+
+- AppProviders
+- console
+- events
+- email
+- queue
+- caching
+- api
+- integration with emails
