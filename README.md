@@ -77,6 +77,7 @@ sail artisan make:request PostCreateReques
 sail artisan queue:work //Listen for queues
 sail artisan route:list --except-vendor
 sail artisan make:policy //Auth, authorize policies generator
+sail artisan make:mail
 
 ## Local variant
 php artisan serve

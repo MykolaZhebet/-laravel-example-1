@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\User;
+use App\Mail\JobPosted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
@@ -31,7 +33,16 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Create new Job
+        $data = $request->validate([
+            'title' => ['required', 'min:3'],
+            'salary' => ['required']
+        ]);
+        $job = Job::create($data);
+        //Send email notify
+        Mail::to($job->employer->user->email)->send(
+            new JobPosted($job)
+        );
     }
 
     /**

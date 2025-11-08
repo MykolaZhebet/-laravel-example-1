@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Job;
+use App\Mail\JobPosted;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ClapController;
@@ -65,6 +67,14 @@ Route::patch('/jobs/{id}', function ($id) {
 
 Route::get('/jobs/create', function () {
     return view('jobs.create');
+});
+
+Route::get('test', function () {
+
+    Mail::to('test@example.test')->send(
+        new JobPosted()
+    );
+    return 'Done';
 });
 
 
