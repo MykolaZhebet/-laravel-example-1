@@ -85,6 +85,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::view('/contact', 'contact');
+
 Route::get('/', [PostController::class, 'index'])
     ->name('dashboard');
 Route::get('/post/@{user_name}/{post:slug}', [PostController::class, 'show'])
