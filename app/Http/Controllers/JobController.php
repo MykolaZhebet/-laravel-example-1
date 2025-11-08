@@ -71,16 +71,25 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Job $job)
     {
-        //
+        Gate::authorize('edit-job', $job);
+        $data = $request->validate([
+            'title' => ['required', 'min:3'],
+            'salary' => ['required']
+        ]);
+
+        $job->update($data);
+        return redirect('/jobs/' . $job->id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Job $job)
     {
-        //
+        Gate::authorize('edit-job', $job);
+        $job->delete();
+        return redirect('/jobs');
     }
 }

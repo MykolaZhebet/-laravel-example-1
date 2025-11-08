@@ -3,6 +3,7 @@
 use App\Models\Job;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ClapController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -34,6 +35,7 @@ Route::get('/jobs', function () {
 //     'except' => ['edit'],
 //     'only' => ['index', 'shos'],
 // ]);
+Route::resource('jobs', JobController::class)->except(['index', 'show'])->middleware('auth');
 
 Route::post('/jobs', function () {
     // dd(request()->all());
