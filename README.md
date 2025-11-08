@@ -75,6 +75,7 @@ sail artisan make:component PostItem //Generate class based view component
 sail artisan storage:link //Create symblink to the public folder from the storage folder
 sail artisan make:request PostCreateReques 
 sail artisan queue:work //Listen for queues
+sail artisan route:list --except-vendor
 
 ## Local variant
 php artisan serve

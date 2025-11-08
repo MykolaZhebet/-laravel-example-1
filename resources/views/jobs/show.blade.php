@@ -3,5 +3,7 @@
     <h2>{{ $job['title'] }}</h2>
     <p> This job pays {{ $job['salary'] }}</p>
     <p>
-        <a href="/jobs/{{ $job['id'] }}/edit">Edit job</a>
+        @can('edit-job', $job)
+            <a href="/jobs/{{ $job['id'] }}/edit">Edit job</a>
+        @endcan
 </x-ui-project-layout>

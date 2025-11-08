@@ -28,6 +28,13 @@ Route::get('/jobs', function () {
     ]);
 });
 
+// Route::controller(JobController::class)->group(funciton(){});
+
+// Route::resource('jobs', JobController::class, [
+//     'except' => ['edit'],
+//     'only' => ['index', 'shos'],
+// ]);
+
 Route::post('/jobs', function () {
     // dd(request()->all());
     // dd(request('title'));
