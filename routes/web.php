@@ -84,7 +84,9 @@ Route::get('/jobs/{id}/edit', function ($id) {
     // dd();
     $job = Job::find($id);
     return view('jobs.edit', ['job' => $job]);
-})->middleware(['auth', 'can:edit-job,job']);
+});
+// ->can('update', 'job')
+// ->middleware(['auth', 'can:edit-job, job']);
 
 Route::get('/about', function () {
     return view('about');

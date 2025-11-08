@@ -76,6 +76,7 @@ sail artisan storage:link //Create symblink to the public folder from the storag
 sail artisan make:request PostCreateReques 
 sail artisan queue:work //Listen for queues
 sail artisan route:list --except-vendor
+sail artisan make:policy //Auth, authorize policies generator
 
 ## Local variant
 php artisan serve
