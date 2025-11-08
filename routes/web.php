@@ -35,7 +35,7 @@ Route::get('/jobs', function () {
 //     'except' => ['edit'],
 //     'only' => ['index', 'shos'],
 // ]);
-Route::resource('jobs', JobController::class)->except(['index', 'show'])->middleware('auth');
+// Route::resource('jobs', JobController::class)->except(['index', 'show'])->middleware('auth');
 
 Route::post('/jobs', function () {
     // dd(request()->all());
@@ -84,7 +84,7 @@ Route::get('/jobs/{id}/edit', function ($id) {
     // dd();
     $job = Job::find($id);
     return view('jobs.edit', ['job' => $job]);
-});
+})->middleware(['auth', 'can:edit-job,job']);
 
 Route::get('/about', function () {
     return view('about');
