@@ -11,6 +11,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PublicProfileController;
+use App\Jobs\TranslateJob;
 
 Route::get('/welcome', function () {
     return view('welcome', [
@@ -71,8 +72,14 @@ Route::get('/jobs/create', function () {
 
 Route::get('test', function () {
 
-    Mail::to('test@example.test')->send(
-        new JobPosted()
+    dispatch(function () {
+        logger('hello from the closure queue worker');
+    })->delay(5);
+    TranslateJob::dispatch(Job::find(1));
+
+
+    Mail::to('test@example.test')->queue(
+        new JobPosted(Job::find(1))
     );
     return 'Done';
 });

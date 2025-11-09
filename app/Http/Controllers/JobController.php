@@ -40,7 +40,7 @@ class JobController extends Controller
         ]);
         $job = Job::create($data);
         //Send email notify
-        Mail::to($job->employer->user->email)->send(
+        Mail::to($job->employer->user->email)->queue(
             new JobPosted($job)
         );
     }
