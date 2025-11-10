@@ -8,6 +8,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('edit-job', function (User $user, Job $job) {
             return $job->employer->user->is($user);
         });
+        //Disable wraping api response into "data" property
+        // JsonResource::withoutWrapping();
     }
 }

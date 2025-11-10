@@ -1,0 +1,11 @@
+POST http://127.0.0.1:/api/v1/register
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "John",
+    "user_name": "John_name",
+    "email": "john@example.com",
+    "password": "12345678",
+    "password_confirmation": "12345678"
+}

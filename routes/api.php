@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\ApiJobController;
 use App\Models\Job;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApiJobController;
+use App\Http\Controllers\Api\ApiLoginController;
+use App\Http\Controllers\Api\ApiRegisteredController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -26,5 +28,15 @@ Route::get('/hello', function () {
 // });
 
 Route::prefix('v1')->group(function () {
-    Route::apiResource('/jobs', ApiJobController::class);
+    Route::post('login', [ApiLoginController::class, 'store']);
 });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::prefix('v1')->group(function () {
+        Route::apiResource('/jobs', ApiJobController::class);
+        Route::post('register', [ApiRegisteredController::class, 'store']);
+    });
+});
+
+
+// require __DIR__ . '/auth.php';

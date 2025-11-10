@@ -1,0 +1,6 @@
+GET http://127.0.0.1/api/v1/jobs
+Accept: application/json
+Content-Type: application/json
+Authorization: "Bearer 3|jLBLfs8kp8kHMvtJV9pJvEmxyOGzaAcBQN8UzBJYc59a157b"
+# Authorization: "Bearer 2|o6Rw3EYOYVJwhnWZP2rpB6FY9htgjZ3cuoQ2nUDI3fc5ee8d"
+
