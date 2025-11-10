@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Job;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use App\Http\Resources\JobResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,10 +18,12 @@ class ApiJobController extends Controller
     {
         $jobs = Job::with(['employer', 'tags'])->latest()->paginate(2);
         // return $jobs;
-        return response()->json([
-            'message' => 'test message',
-            'data' => $jobs
-        ])->header('Test-header', 'test');
+        return JobResource::collection($jobs);
+
+        // return response()->json([
+        //     'message' => 'test message',
+        //     'data' => $jobs
+        // ])->header('Test-header', 'test');
     }
 
     /**
@@ -42,7 +45,7 @@ class ApiJobController extends Controller
      */
     public function show(Job $job)
     {
-        return  $job;
+        return  new JobResource($job);
     }
 
     /**
