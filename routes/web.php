@@ -5,6 +5,7 @@ use App\Models\Tag;
 use App\Mail\JobPosted;
 use App\Jobs\TranslateJob;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
@@ -32,7 +33,7 @@ Route::get('/tags/{tag:name}', TagController::class);
 Route::get('/jobs', function () {
     // $jobs = Job::with('employer')->paginate(2);
     // $jobs = Job::with('employer')->simplePaginate(2);
-    $jobs = Job::with('employer')->latest()->cursorPaginate(2);
+    $jobs = Job::with(['employer', 'tags'])->latest()->cursorPaginate(2);
     return view('jobs.index', [
         'jobs' => $jobs,
         'tags' => Tag::all()
@@ -50,16 +51,25 @@ Route::get('/jobs', function () {
 Route::post('/jobs', function () {
     // dd(request()->all());
     // dd(request('title'));
-    request()->validate([
+    $attributes = request()->validate([
         'title' => ['required', 'min:3'],
-        'salary' => ['required']
+        'salary' => ['required'],
+        'tags' => ['nullable']
     ]);
 
-    Job::create([
-        'title' => request('title'),
-        'salary' => request('salary'),
-        'employer_id' => 1
-    ]);
+    // Job::create([
+    //     'title' => request('title'),
+    //     'salary' => request('salary'),
+    //     'employer_id' => 1
+    // ]);
+    //That allows to set 'employer_id automatically
+    $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, 'tags'));
+    if ($attributes['tags'] ?? false) {
+        foreach ($attributes['tags'] as $tag) {
+            //Create tag if not exist
+            $job->tag($tag);
+        }
+    }
 });
 
 Route::patch('/jobs/{id}', function ($id) {
