@@ -111,4 +111,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         return $post->claps()->where('user_id', $this->id)->exists();
     }
+
+    public function employer()
+    {
+        $this->hasOne(Employer::class);
+    }
 }

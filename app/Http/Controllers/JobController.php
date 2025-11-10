@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\Tag;
 use App\Models\User;
 use App\Mail\JobPosted;
 use Illuminate\Http\Request;
@@ -17,7 +18,12 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        // $jobs = Job::all()->groupBy('featured');
+        // return $jobs;
+        return view('jobs.index', [
+            'jobs' => Job::all(),
+            'tags' => Tag::all()
+        ]);
     }
 
     /**

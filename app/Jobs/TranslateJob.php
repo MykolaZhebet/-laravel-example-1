@@ -13,7 +13,7 @@ class TranslateJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(protected Job $job)
+    public function __construct(protected Job $jobDesc)
     {
         //
     }
@@ -23,6 +23,6 @@ class TranslateJob implements ShouldQueue
      */
     public function handle(): void
     {
-        logger('hello from class worker. Job: ' . $this->job->title);
+        logger('hello from class worker. Job: ' . $this->jobDesc->title);
     }
 }
