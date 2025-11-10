@@ -29,4 +29,12 @@ class PostCreateRequest extends FormRequest
             'published_at' => ['nullable', 'date']
         ];
     }
+
+    public function message()
+    {
+        return [
+            'title' => 'Title is required',
+            'image.max' => 'Max size of image reached :max'
+        ];
+    }
 }
