@@ -1,23 +1,29 @@
 <?php
 
 use App\Models\Job;
+use App\Models\Tag;
 use App\Mail\JobPosted;
+use App\Jobs\TranslateJob;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\ClapController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PublicProfileController;
-use App\Jobs\TranslateJob;
 
 Route::get('/welcome', function () {
     return view('welcome', [
         'greeting' => 'Hi there!'
     ]);
 });
+
+Route::get('/search', SearchController::class);
+Route::get('/tags/{tag:name}', TagController::class);
 
 
 
@@ -28,7 +34,8 @@ Route::get('/jobs', function () {
     // $jobs = Job::with('employer')->simplePaginate(2);
     $jobs = Job::with('employer')->latest()->cursorPaginate(2);
     return view('jobs.index', [
-        'jobs' => $jobs
+        'jobs' => $jobs,
+        'tags' => Tag::all()
     ]);
 });
 
