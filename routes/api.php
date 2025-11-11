@@ -28,7 +28,9 @@ Route::get('/hello', function () {
 // });
 
 Route::prefix('v1')->group(function () {
-    Route::post('login', [ApiLoginController::class, 'store']);
+    Route::post('login', [ApiLoginController::class, 'store'])
+        //Throttle to 6 request per minute
+        ->middleware('throttle:6:1');
 });
 
 Route::middleware('auth:sanctum')->group(function () {

@@ -4,12 +4,15 @@ namespace App\Providers;
 
 use App\Models\Job;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,5 +37,9 @@ class AppServiceProvider extends ServiceProvider
         });
         //Disable wraping api response into "data" property
         // JsonResource::withoutWrapping();
+        //Default throttling for '/api' route prefix is 60 requests per minute
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perminute(60)->by($request->user()?->id ?: $request->ip());
+        });
     }
 }
