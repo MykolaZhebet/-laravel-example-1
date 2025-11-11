@@ -108,6 +108,8 @@ sail artisan db:seed --class=JobSeeder //Run concrete seeder
 - laravel/sanctum for API authentication
 - openai-php/client - for request to the Cloud AI
 - minio for se compatible file storage on local env
+- dedoc/scramble - API documentation generation @see http://127.0.0.1/docs/api#/
+
 ### Frontent
 - flowbite components: https://flowbite.com/docs/components/tabs/
 - tailwincss.com for layout template:  https://tailwindcss.com/plus/ui-blocks/application-ui/application-shells/stacked 

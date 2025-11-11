@@ -18,6 +18,12 @@ class ImagePromptGenerationController extends Controller
         $imageGenerations = $user->imageGenerations()->latest()->paginate(10);
         return ImageGenerationResource::collections($imageGenerations);
     }
+    /**
+     * 
+     * Generate descriptive for image
+     * @param \App\Http\Requests\GeneratePromptRequest $request
+     * @return ImageGenerationResource
+     */
     public function store(GeneratePromptRequest $request)
     {
         $user = $request->user();

@@ -56,24 +56,24 @@ services:
             - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
             - sail
-    minio:
-        image: minio/minio
-        container_name: minio
-        ports:
-        - "9000:9000" # MinIO API and Console
-        - "9001:9001" # MinIO Console (separate port for older versions or specific configurations)
-        volumes:
-        - minio_data:/data # Persistent storage for MinIO data
-        environment:
-        MINIO_ROOT_USER: "minioadmin" # Replace with a strong username
-        MINIO_ROOT_PASSWORD: "minioadmin" # Replace with a strong password
-        MINIO_SERVER_URL: "http://localhost:9000" # Optional: Specify server URL
-        command: server /data --console-address ":9001" # Start MinIO server and specify console address
-        healthcheck:
-        test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
-        interval: 30s
-        timeout: 20s
-        retries: 3
+    # minio:
+    #     image: minio/minio
+    #     container_name: minio
+    #     ports:
+    #     - "9000:9000" # MinIO API and Console
+    #     - "9001:9001" # MinIO Console (separate port for older versions or specific configurations)
+    #     volumes:
+    #     - minio_data:/data # Persistent storage for MinIO data
+    #     environment:
+    #     MINIO_ROOT_USER: "minioadmin" # Replace with a strong username
+    #     MINIO_ROOT_PASSWORD: "minioadmin" # Replace with a strong password
+    #     MINIO_SERVER_URL: "http://localhost:9000" # Optional: Specify server URL
+    #     command: server /data --console-address ":9001" # Start MinIO server and specify console address
+    #     healthcheck:
+    #     test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+    #     interval: 30s
+    #     timeout: 20s
+    #     retries: 3
 
 networks:
     sail:
