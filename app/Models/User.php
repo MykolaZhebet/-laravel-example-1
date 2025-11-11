@@ -117,4 +117,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         $this->hasOne(Employer::class);
     }
+
+    public function imageGenerations()
+    {
+        return $this->hasMany(ImageGeneration::class);
+    }
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiJobController;
 use App\Http\Controllers\Api\ApiLoginController;
 use App\Http\Controllers\Api\ApiRegisteredController;
+use App\Http\Controllers\ImagePromptGenerationController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -31,6 +32,8 @@ Route::prefix('v1')->group(function () {
     Route::post('login', [ApiLoginController::class, 'store'])
         //Throttle to 6 request per minute
         ->middleware('throttle:6:1');
+    Route::apiResource('image_prompt_generations', ImagePromptGenerationController::class)
+        ->only(['index', 'store']);
 });
 
 Route::middleware('auth:sanctum')->group(function () {

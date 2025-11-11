@@ -106,6 +106,8 @@ sail artisan db:seed --class=JobSeeder //Run concrete seeder
 - spatie/laravel-sluggable for generating slugs for models
 - barryvdh/laravel-debugbar --dev for local debugging
 - laravel/sanctum for API authentication
+- openai-php/client - for request to the Cloud AI
+- minio for se compatible file storage on local env
 ### Frontent
 - flowbite components: https://flowbite.com/docs/components/tabs/
 - tailwincss.com for layout template:  https://tailwindcss.com/plus/ui-blocks/application-ui/application-shells/stacked 
