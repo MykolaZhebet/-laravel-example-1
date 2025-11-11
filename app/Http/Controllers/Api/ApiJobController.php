@@ -53,11 +53,14 @@ class ApiJobController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $attributes = $request->validate([
             'title' => ['required', 'min:3'],
             'salary' => ['required'],
         ]);
         $job = Job::findOrFail($id);
+        abort_if(Auth::id() != $job->employer_id, 403, 'Access Forbidden');
+
         $job->update($attributes);
         return $job;
     }
