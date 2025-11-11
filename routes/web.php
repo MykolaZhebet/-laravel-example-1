@@ -17,6 +17,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PublicProfileController;
 
+//test for vue
+Route::get('/vue/{vue_capture?}', function () {
+    error_log('START VUE ROUTING');
+    return view('vue.welcome');
+})->where('vue_capture', '[\/\w\.-]*');
+
 Route::get('/welcome', function () {
     return view('welcome', [
         'greeting' => 'Hi there!'
