@@ -28,6 +28,8 @@ class ApiLoginController extends Controller
 
     public function store(LoginRequest $request)
     {
+
+        error_log('start api login controller store session!');
         $request->authenticate();
 
         $user = $request->user();

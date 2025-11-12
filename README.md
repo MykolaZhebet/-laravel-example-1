@@ -79,7 +79,8 @@ sail artisan queue:work //Listen for queues
 sail artisan route:list --except-vendor
 sail artisan make:policy //Auth, authorize policies generator
 sail artisan make:mail
-artisan install:api //Installs 
+artisan install:api //Installs API
+sail artisan optimize:clear //Clear cache
 
 ## Local variant
 php artisan serve
@@ -94,6 +95,7 @@ php artisan db:table
 ## Test
 sail artisan db:seed //Run DatabaseSeeder
 sail artisan db:seed --class=JobSeeder //Run concrete seeder
+artisan test --filter=LoginApitest //Run concrete test
 
 
 ```

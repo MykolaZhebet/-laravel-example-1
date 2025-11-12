@@ -16,9 +16,9 @@ class JobSeeder extends Seeder
     public function run(): void
     {
         $tags = Tag::factory(3)->create();
-        Job::factory(10)->hasAttached($tags)->create(new Sequence(
-            ['features' => false],
-            ['features' => true],
-        ));
+        // Job::factory(10)->hasAttached($tags)->create(new Sequence(
+        //     ['features' => false],
+        //     ['features' => true],
+        // ));
     }
 }
