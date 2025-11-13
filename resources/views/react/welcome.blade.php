@@ -4,7 +4,7 @@
 <head>
     <title>Laravel with React</title>
     @viteReactRefresh
-    @vite(['resources/css/react/app.css', 'resources/js/react/app.jsx']) {{-- For Vite --}}
+    @vite(['resources/css/react/app.css', 'resources/js/react/main.jsx'])
 </head>
 
 <body>
