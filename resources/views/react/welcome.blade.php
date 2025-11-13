@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Laravel with React</title>
+    @viteReactRefresh
+    @vite(['resources/css/react/app.css', 'resources/js/react/app.jsx']) {{-- For Vite --}}
+</head>
+
+<body>
+    <div id="react-app"></div>
+</body>
+
+</html>

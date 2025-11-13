@@ -23,6 +23,11 @@ Route::get('/vue/{vue_capture?}', function () {
     return view('vue.welcome');
 })->where('vue_capture', '[\/\w\.-]*');
 
+Route::get('/react/{react_capture?}', function () {
+    error_log('START VUE ROUTING');
+    return view('react.welcome');
+})->where('react_capture', '[\/\w\.-]*');
+
 Route::get('/welcome', function () {
     return view('welcome', [
         'greeting' => 'Hi there!'
