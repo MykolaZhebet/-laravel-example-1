@@ -1,11 +1,15 @@
 import { Link, Outlet, Navigate } from "react-router-dom";
 import { UseStateContext } from "../contexts/ContextProvider";
 export default function DefaultLayuot() {
-    const { user, token } = UseStateContext();
+    const { user, token, setUser, setToken } = UseStateContext();
     const onLogout = (ev) => {
         ev.preventDefault();
         console.log('Logout action')
-     }
+        setUser({});
+        setToken(null);
+    }
+    console.log(user);
+    console.log(token);
     if (!token) {
         return <Navigate to="/react/login/"/>
     }
@@ -20,7 +24,7 @@ export default function DefaultLayuot() {
                  <header>
                      <div>Header</div>
                      <div>
-                         User info: {user.name}
+                         User info: {user.user_name}
                          <a className="btn-logout" href="#" onClick={onLogout}>Logout</a>
                          
                      </div>

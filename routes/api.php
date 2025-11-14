@@ -30,6 +30,7 @@ Route::get('/hello', function () {
 
 Route::prefix('v1')->group(function () {
     Route::post('login', [ApiLoginController::class, 'store']);
+    Route::post('register', [ApiRegisteredController::class, 'store']);
     //Throttle to 6 request per minute
     // ->middleware('throttle:6:1');
     Route::apiResource('image_prompt_generations', ImagePromptGenerationController::class)
@@ -39,7 +40,6 @@ Route::prefix('v1')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('v1')->group(function () {
         Route::apiResource('/jobs', ApiJobController::class);
-        Route::post('register', [ApiRegisteredController::class, 'store']);
     });
 });
 

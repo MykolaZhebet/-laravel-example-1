@@ -4,6 +4,7 @@ import axiosClient from "../axiosClient";
 import { UseStateContext } from "../contexts/ContextProvider";
 export default function Signup() { 
     const nameRef = useRef();
+    const userNameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmationRef = useRef();
@@ -13,30 +14,37 @@ export default function Signup() {
         ev.preventDefault();
         const payload = {
             name: nameRef.current.value,
+            user_name: userNameRef.current.value,
             email: emailRef.current.value,
             password: passwordRef.current.value,
             password_confirmation: passwordConfirmationRef.current.value,
         }
         console.log(payload);
-        axiosClient.post('/api/signup', payload).then(({ data }) => { 
+        axiosClient.post('/register', payload).then(({ data }) => { 
             setUser(data.user);
-            setToken(data.token);
-        }).catch((err) => {
+            (async () => {
+                const res = await axiosClient.post('/login', {
+                    email: payload.email,
+                    password: payload.password
+                });
+                console.log('token ' + res.data.token);
+                setToken(res.data.token);
+            })();
+            
+            // setToken(data.token);
+        }).catch((error) => {
             console.log('error occurred');
-            console.log(err);
-            const response = err.response;
-            //If there are some validation errors during signup
-            if (response && response.status === 422) {
-                console.log(response.data.errors);
-            }
-         })
+            console.log(error);
+        })
     }
     return (
         <div className="login-signup-form animated fadeInDown">
             <div className="form">
                 <form onSubmit={onSubmit}>
                     <h1 className="title">Create your account</h1>
-                    <input ref={nameRef} type="text" placeholder="Full Nama"/>
+                    
+                    <input ref={nameRef} type="text" placeholder="Full Name" />
+                    <input ref={userNameRef} type="text" placeholder="user name" />
                     <input ref={emailRef} type="email" placeholder="Email"/>
                     <input ref={passwordRef} type="password" placeholder="Password" />
                     <input ref={passwordConfirmationRef} type="password" placeholder="Password Confirmation" />
