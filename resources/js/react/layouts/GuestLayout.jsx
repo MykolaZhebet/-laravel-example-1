@@ -3,7 +3,7 @@ import { UseStateContext } from "../contexts/ContextProvider";
 export default function GuestLayuot() {
     const { token } = UseStateContext();
     if (token) { 
-        return <Navigate to="/react/" />
+        return <Navigate to="/react/users" />
     }
     return (
         <>
