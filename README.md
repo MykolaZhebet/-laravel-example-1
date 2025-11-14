@@ -122,3 +122,4 @@ artisan test --filter=LoginApitest //Run concrete test
 - https://www.youtube.com/watch?v=MG1kt_wiIz0 
 - https://www.youtube.com/watch?v=9O_WD5zQGxM&list=PL3VM-unCzF8hy47mt9-chowaHNjfkuEVz&index=10
 - https://www.youtube.com/watch?v=_iuxZygxz98
+- https://www.youtube.com/watch?v=qJq9ZMB2Was
