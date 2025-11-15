@@ -6,6 +6,7 @@ import NotFound from './views/NotFound';
 import DefaultLayuot from './layouts/DefaultLayout';
 import GuestLayuot from './layouts/GuestLayout';
 import Dashboard from './views/Dashboard';
+import ErrorPage from './errorPage';
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
     {
         path: '/react/',
         element: <GuestLayuot />,
+        errorElement:  <ErrorPage />, // Catches errors for this route and its children children
         children: [
             {
                 path: '/react/login',
