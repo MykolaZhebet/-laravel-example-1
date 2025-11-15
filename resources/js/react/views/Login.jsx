@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import axiosClient from "../axiosClient";
+import { useState } from "react";
 import { UseStateContext } from "../contexts/ContextProvider";
 export default function Login() {
     const { setUser, setToken} = UseStateContext();
     const emailRef = useRef();
     const passwordRef = useRef();
+    const [errors, setErrors] = useState();
 
     const onSubmit = (ev) => {
         ev.preventDefault();
@@ -26,6 +28,7 @@ export default function Login() {
                 setToken(res.data.token);
             } catch (error) { 
                 console.log('error during login' + error);
+                setErrors(error.response.data.errors);
             }
         })();
     }
@@ -34,6 +37,13 @@ export default function Login() {
             <div className="form">
                 <form onSubmit={onSubmit}>
                     <h1 className="title">Login int your account</h1>
+                    {
+                        errors && <div class="alert">
+                            {Object.keys(errors).map(key => (
+                                <p>{errors[key][0] }</p>
+                            ))}
+                        </div>
+                    }
                     <input ref={emailRef} type="email" placeholder="Email"/>
                     <input ref={passwordRef} type="password" placeholder="Password" />
                     <button className="btn btn-block">Login</button>
