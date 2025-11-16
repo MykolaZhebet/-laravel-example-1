@@ -5,6 +5,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiJobController;
+use App\Http\Controllers\Api\ApiUserController;
 use App\Http\Controllers\Api\ApiLoginController;
 use App\Http\Controllers\Api\ApiRegisteredController;
 use App\Http\Controllers\ImagePromptGenerationController;
@@ -39,6 +40,7 @@ Route::prefix('v1')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('v1')->group(function () {
+        Route::apiResource('/users', ApiUserController::class);
         Route::apiResource('/jobs', ApiJobController::class);
     });
 });

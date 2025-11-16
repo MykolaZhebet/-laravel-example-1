@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             'user_name' => 'test_user',
             'email' => 'test@example.com',
         ]);
+        User::factory(10)->create();
 
         $categories = [
             'Technology',

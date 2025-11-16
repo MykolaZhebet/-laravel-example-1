@@ -26,9 +26,16 @@ export default function Login() {
                 console.log('token ' + res.data.token);
                 setUser(res.data.user);
                 setToken(res.data.token);
+                
             } catch (error) { 
                 console.log('error during login' + error);
-                setErrors(error.response.data.errors);
+                if (error.response.data.errors) { 
+                    setErrors(error.response.data.errors);
+                } else {
+                    setErrors({
+                        error: [error.response.message]
+                    });
+                }
             }
         })();
     }

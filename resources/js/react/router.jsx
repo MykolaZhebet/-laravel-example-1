@@ -7,6 +7,7 @@ import DefaultLayuot from './layouts/DefaultLayout';
 import GuestLayuot from './layouts/GuestLayout';
 import Dashboard from './views/Dashboard';
 import ErrorPage from './errorPage';
+import UserForm from './views/UserForm';
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,14 @@ const router = createBrowserRouter([
             {
                 path: '/react/users',
                 element: <Users />
+            },
+            {
+                path: '/react/users/new',
+                element: <UserForm key="userCreate"/>
+            },
+            {
+                path: '/react/users/:id',
+                element: <UserForm key="userUpdate"/>
             },
         ],
     },
