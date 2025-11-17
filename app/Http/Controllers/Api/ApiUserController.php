@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules;
 
 class ApiUserController extends Controller
 {
@@ -28,7 +29,7 @@ class ApiUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'user_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
 
@@ -57,8 +58,8 @@ class ApiUserController extends Controller
         $attributes = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'user_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class . $user->id],
-            'password' => ['confirmed', Password::defaults()],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class . ',email,' . $user->id],
+            'password' => ['confirmed', Rules\Password::defaults()],
         ]);
         if ($request->get('password')) {
             $attributes['password'] = Hash::make($request->get('password'));
