@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import { UseStateContext } from "../contexts/ContextProvider";
 
 export default function UserForm() { 
     const { id } = useParams();
@@ -18,6 +19,7 @@ export default function UserForm() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState();
+    const { setNotification } = UseStateContext();
 
     const nameRef = useRef();
     const userNameRef = useRef();
@@ -47,6 +49,7 @@ export default function UserForm() {
         if (user.id) {
             axiosClient.put(`/users/${user.id}`, user)
                 .then(() => { 
+                    setNotification('User was updated');
                     navigate('/react/users')
                 }).catch((error) => {
                     console.log('error occurred');
@@ -56,7 +59,8 @@ export default function UserForm() {
                 })
         } else {
             axiosClient.post('/users', user)
-                .then(() => { 
+                .then(() => {
+                    setNotification('User was created');
                     navigate('/react/users')
                 }).catch((error) => {
                     console.log('error occurred');

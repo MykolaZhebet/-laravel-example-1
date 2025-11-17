@@ -3,7 +3,7 @@ import { UseStateContext } from "../contexts/ContextProvider";
 import { useEffect } from "react";
 import axiosClient from "../axiosClient";
 export default function DefaultLayuot() {
-    const { user, token, setUser, setToken } = UseStateContext();
+    const { user, token, notification, setUser, setToken } = UseStateContext();
     //Fetch full user on layout load
     // console.log(Object.keys(user));
     console.log(user.id);
@@ -63,7 +63,11 @@ export default function DefaultLayuot() {
             <Outlet />
                  </main>
              </div>
-            
+            {notification &&  
+                         <div className="notification">
+                             {notification} test notify
+                         </div>
+                 }
         </div>
     );
 }
