@@ -62,7 +62,7 @@ export default function Users() {
                                 <td>{u.email}</td>
                                 <td>{u.created_at}</td>
                                 <td>
-                                    <Link to={'/users/' + u.id} className="btn-edit">Edit</Link>
+                                    <Link to={'/react/users/' + u.id} className="btn-edit">Edit</Link>
                                     &nbsp;
                                     <button onClick={ev => onDelete(u)} className="btn-delete">Delete</button>
                                 </td>
