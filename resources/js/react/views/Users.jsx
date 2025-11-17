@@ -35,7 +35,7 @@ export default function Users() {
         <div>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                 <h1>Users</h1>
-                <Link to="/users/new" class="btn-add">Add new user</Link>
+                <Link to="/users/new" className="btn-add">Add new user</Link>
             </div>
             <div className="cad animated fadeInDown">
                 <table>
@@ -56,7 +56,7 @@ export default function Users() {
                         }
                     {!loading && <tbody>
                         {users.map(u => (
-                            <tr>
+                            <tr key={u.id}>
                                 <td>{u.id}</td>
                                 <td>{u.user_name}</td>
                                 <td>{u.email}</td>

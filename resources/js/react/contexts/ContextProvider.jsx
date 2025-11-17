@@ -28,10 +28,9 @@ export const ContextProvider = ({ children }) => {
 
     const setNotification = (message) => { 
         _setNotification(message);
-        console.log('notification is set!!!!');
         setTimeout(() => { 
             _setNotification('');
-        }, 10000);
+        }, 5000);
     }
     return (
         <StateContext.Provider value={{
