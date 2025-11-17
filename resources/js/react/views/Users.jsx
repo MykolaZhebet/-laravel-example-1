@@ -8,16 +8,28 @@ export default function Users() {
         getUsers();
     }, []);
 
+
     const getUsers = () => { 
         axiosClient.get('/users').then(({ data }) => { 
-            setLoading(false);
             console.log('data users');
             console.log(data);
             setUsers(data.data);
+            setLoading(false);
         }).catch((err) => { 
             console.log(err);
             setLoading(false);
         })
+    }
+
+    const onDelete = (u) => {
+        if (window.confirm('Delete user?')) {
+            return;
+        }
+        setLoading(true);
+        axiosClient.delete(`/users/${u.id}`).then(() => {
+            getUsers();
+            setLoading(false);
+        });
     }
     return (
         <div>
@@ -36,7 +48,13 @@ export default function Users() {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {loading && <tbody>
+                        <tr><td colSpan="5" className='text-center'>
+                            Loading...
+                        </td></tr>
+                    </tbody>
+                        }
+                    {!loading && <tbody>
                         {users.map(u => (
                             <tr>
                                 <td>{u.id}</td>
@@ -45,11 +63,13 @@ export default function Users() {
                                 <td>{u.created_at}</td>
                                 <td>
                                     <Link to={'/users/' + u.id} className="btn-edit">Edit</Link>
-                                    <button className="btn-delete">Delete</button>
+                                    &nbsp;
+                                    <button onClick={ev => onDelete(u)} className="btn-delete">Delete</button>
                                 </td>
-                            </tr>    
+                            </tr>
                         ))}
                     </tbody>
+                    }
                 </table>
             </div>
         </div>
